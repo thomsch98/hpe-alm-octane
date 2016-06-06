@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>NGA configuration file</comment>
+    <!-- RDBMS (Oracle) connection properties  -->
+    <!-- server info -->
+    <entry key="ConnectionString">jdbc:mercury:oracle://nga_oracle:1521;servicename=xe</entry>
+    <entry key="DBServerName">nga_oracle</entry>
+    <entry key="DBServerPort">1521</entry>
+    <entry key="ServiceName">xe</entry>
+
+    <!-- admin credentials -->
+    <entry key="DBAdminUser">system</entry>
+    <entry key="DBAdminPassword">oracle</entry>
+
+    <!-- schema info -->
+    <entry key="SchemaName">sadb_docker2</entry>
+    <entry key="TableSpace">USERS</entry>
+    <entry key="TempTableSpace">TEMP</entry>
+    <entry key="SchemaPassword">tdtdtd</entry>
+    <entry key="SchemaUser">hpu</entry>
+
+
+    <!-- system properties.  no need to change -->
+    <entry key="DBType">ORACLE</entry>
+    <entry key="DropExistingSchema">true</entry>
+    <entry key="UseConnectionString">NO</entry>
+
+    <!--Elastic search config properties.  If using bundled docker Elastic search no need to configure-->
+    <entry key="ElasticHost">nga_es</entry>
+    <entry key="ElasticPort">9300</entry>
+    <entry key="ElasticClusterName">elasticsearch</entry>
+
+	<!--Authentication Domain.  Must match domain that will be used to access application-->
+    <entry key="Domain">hpswlabs.adapps.hp.com</entry>
+    <entry key="SsoMasterDomain">hpswlabs.adapps.hp.com</entry>
+	
+    <!--Proprerties that will be managed by container internally.  No need to configure on docker deployment-->
+    <entry key="InstallationFolder">/opt/mqm/install</entry>
+    <entry key="LicenseFile">/opt/mqm/HP_ALM_11_50_Permanent_Unlimited.dat</entry>
+    <entry key="LogFolder">/var/nga/log</entry>
+    <entry key="RepositoryFolder">/var/nga/repo</entry>
+    <entry key="WarFolder">/opt/mqm/webapps/root</entry>
+
+    <!--No Need to touch the values below here-->
+    <entry key="DBAction">CREATE_NEW</entry>
+    <entry key="DropExistingSchema">true</entry>
+    <entry key="SsoLogoutUrl"/>
+    <entry key="SsoMasterLoginUrl">http://myd-vm22133.hpswlabs.adapps.hp.com:8081/portal/login</entry>
+    <entry key="SsoMasterLogoutUrl">http://myd-vm22133.hpswlabs.adapps.hp.com:8081/portal/logout</entry>
+    <entry key="SsoRedirectToAppUrl">http://myd-vm22133.hpswlabs.adapps.hp.com:8081/portal/login</entry>
+    <entry key="DistributedPassword">QCC:NiaOXfJj+INS8P6HAG/Bc5Vy8ZW4Z/6zkOfJWIcu6NM=</entry>
+    <entry key="BackOffice">http://myd-vm22133.hpswlabs.adapps.hp.com:8081/portal</entry>
+    <entry key="MqmUrl">http://myd-vm22133.hpswlabs.adapps.hp.com:8081/</entry>
+    <entry key="NewSchemaName"/>
+    <entry key="QcLogMaxLines"/>
+    <entry key="SiteAdministratorPassword">QCC:aeMxNH0PK5OIOXCrLkROFA==</entry>
+    <entry key="SiteAdministratorUser">sa</entry>
+    <entry key="InitString">InitString</entry>
+    <entry key="SaLogMaxLines"/>
+</properties>

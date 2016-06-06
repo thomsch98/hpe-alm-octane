@@ -1,0 +1,40 @@
+version: "2"
+
+services:
+    nga_data:
+        image: buildpack-deps:trusty-curl
+        volumes:
+        - "/usr/lib/oracle/xe/oradata/XE"
+        - "/usr/share/elasticsearch/data"
+        - "/var/log/nga"
+        - "/var/nga/repo"
+        command: "mkdir -p -m 0777 /usr/lib/oracle/xe/oradata/XE /usr/share/elasticsearch/data /var/log/nga /var/nga/repo" 
+        
+    nga_oracle:
+        image: alexeiled/docker-oracle-xe-11g
+        volumes_from:
+        - nga_data
+        shm_size: 2g
+
+    nga_es:
+        image: elasticsearch:2.2
+        volumes_from:
+        - nga_data
+        environment:
+        - "ES_HEAP_SIZE=3G"
+
+    nga:
+        build: nga
+        ports:
+        - "8080:8080"
+        environment:
+        - "SERVER_DOMAIN=localhost"
+        - "ADMIN_PASSWORD=samson7!"
+        depends_on:
+        - nga_oracle
+        - nga_es
+        volumes_from:
+        - nga_data
+        working_dir: "/opt/mqm" 
+        command: 'dockerize -timeout 60s -wait tcp://nga_oracle:1521 -wait tcp://nga_es:9300 sh -c "sleep 60s && ./run.sh"'
+        restart: unless-stopped
